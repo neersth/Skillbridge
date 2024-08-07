@@ -44,7 +44,7 @@ h5,
 h6,
 .h6 {
   font-weight: 600;
-  margin: 0 0 6px;
+  margin: 0 0 10px;
 }
 
 h1,
@@ -73,7 +73,7 @@ h6,
 }
 
 p {
-  margin: 0 0 20px;
+  margin: 0 0 24px;
 }
 
 a {
@@ -81,6 +81,13 @@ a {
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
   text-decoration: none;
+  color: var(--color-text);
+}
+a:hover {
+  color: var(--color-primary);
+}
+a:focus {
+  outline: 1px dashed var(--color-dark);
 }
 
 ul,
@@ -106,7 +113,16 @@ button {
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
-
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page-holder {
+  flex-grow: 1;
+}
 /* Utility classes */
 .accessibility {
   position: absolute;
@@ -127,8 +143,30 @@ button {
   padding-left: 20px;
   padding-right: 20px;
 }
-.flex {
+.grid {
+  display: grid;
+}
+.grid-col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.gap-20 {
+  gap: 20px;
+}
+.gap-30 {
+  gap: 30px;
+}
+.card {
   display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+.card p {
+  margin-bottom: 0;
 }
 .px-0 {
   padding-left: 0 !important;
@@ -165,6 +203,9 @@ button {
   transition-timing-function: var(--transition-timing-function);
 }
 .btn__icon {
+  display: inline-flex;
+  transition: transform var(--transition-duration)
+    var(--transition-timing-function);
   line-height: 1;
 }
 .btn__icon path {
@@ -190,9 +231,28 @@ button {
 .btn--primary:hover .btn__icon path {
   fill: var(--btn-hover-text-color);
 }
+.btn--light {
+  --btn-border-color: var(--color-border);
+  --btn-bg-color: var(--color-light);
+  --btn-text-color: var(--color-text);
+  --btn-hover-text-color: var(--color-text);
+  --btn-hover-border-color: var(--color-light);
+  --btn-hover-bg-color: transparent;
+}
+.btn--gray {
+  --btn-border-color: var(--color-border);
+  --btn-bg-color: #fcfcfd;
+  --btn-text-color: var(--color-primary);
+  --btn-hover-text-color: var(--color-primary);
+  --btn-hover-border-color: var(--color-primary);
+  --btn-hover-bg-color: transparent;
+}
 .btn--full {
   display: flex;
   width: 100%;
+}
+.btn--arrow:hover .btn__icon {
+  transform: rotate(45deg);
 }
 
 /* Header */
@@ -244,8 +304,11 @@ button {
   color: var(--color-white);
   background-color: var(--color-primary);
 }
-.menu .header__btn a:hover {
+.menu .header__btn a:hover,
+.menu .header__btn a:focus {
+  outline: none;
   background-color: transparent;
+  color: var(--color-primary);
 }
 .banner__content {
   padding: 100px 0;
@@ -261,6 +324,7 @@ button {
   max-width: 854px;
   margin: 0 auto 20px;
   position: relative;
+  background-color: var(--color-white);
 }
 .banner__title::before {
   content: "";
@@ -296,7 +360,7 @@ button {
   gap: 12px;
   margin-top: 60px;
 }
-.banner__logos {
+.partner__logos {
   padding: 28px;
   border-radius: 12px;
   border: 1px solid var(--color-border);
@@ -304,7 +368,7 @@ button {
   display: flex;
   align-items: center;
 }
-.banner__logo {
+.partner__logo {
   flex: 1;
   position: relative;
   min-height: 94px;
@@ -313,7 +377,7 @@ button {
   justify-content: center;
   line-height: 1;
 }
-.banner__logo:not(:last-child)::after {
+.partner__logo:not(:last-child)::after {
   content: "";
   position: absolute;
   top: 0;
@@ -321,6 +385,146 @@ button {
   height: 100%;
   width: 1px;
   background-color: var(--color-border);
+}
+.video-block {
+  padding: 100px 0 50px;
+}
+.video-block img {
+  border-radius: 12px;
+}
+.title-holder {
+  display: flex;
+  justify-content: space-between;
+  gap: 300px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+.title-holder .title__heading {
+  font-size: 48px;
+  margin-bottom: 6px;
+}
+.title-holder .title__btn {
+  flex-shrink: 0;
+}
+.title-holder p:last-child {
+  margin-bottom: 0;
+}
+.benefits-block {
+  padding: 100px 0;
+}
+.benefit--card {
+  align-items: flex-end;
+  gap: 50px;
+  padding: 50px;
+  background-color: var(--color-white);
+  color: var(--color-gray);
+  transition: box-shadow var(--transition-duration)
+    var(--transition-timing-function);
+  border: none;
+}
+.benefit--card:hover {
+  box-shadow: 0 0 40px rgba(255, 149, 0, 0.06);
+}
+.benefit--card .card__count {
+  color: var(--color-text);
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 0.8;
+}
+.benefit--card p {
+  margin-bottom: 0;
+}
+.benefit--card .card__title {
+  color: #333333;
+  margin-bottom: 14px;
+}
+.benefit--card .card__btn .btn {
+  padding: 0;
+  width: 54px;
+  height: 54px;
+}
+
+.card--course {
+  height: 100%;
+  padding: 50px;
+  gap: 30px;
+}
+.card--course .card__img {
+  aspect-ratio: 683.5 / 380;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card--course .card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-duration)
+    var(--transition-timing-function);
+}
+.card--course:hover .card__img img {
+  transform: scale(1.2);
+}
+.card--course .card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card--course .card__title {
+  margin-bottom: 14px;
+}
+.card--course .card__author {
+  font-weight: 500;
+}
+.card__tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.card__tags a {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  line-height: 1.27;
+}
+.card__tags a:hover,
+.card__tags a:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.card--course .card__btn {
+  margin-top: auto;
+}
+.testimonials-block {
+  padding: 108px 0 168px;
+}
+.card--testimonial .card__body {
+  padding: 50px;
+}
+.card--testimonial .card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 50px;
+  border-top: 1px solid var(--color-border);
+}
+.author-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.author-profile .author__img {
+  width: 60px;
+  aspect-ratio: 1;
+}
+.author-profile .author__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.author-profile .author__name {
+  font-weight: 600;
 }
 @media (min-width: 1024px) {
   .container {
