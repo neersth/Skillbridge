@@ -153,15 +153,20 @@ button {
   padding-left: 16px;
   padding-right: 16px;
 }
-.grid {
+
+.row {
+  --gap: 20px;
+  --half: calc(var(--gap) / 2);
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  margin: calc(var(--gap) * -1) calc(var(--half) * -1) 0;
 }
-.gap-20 {
-  gap: 20px;
-}
-.gap-30 {
-  gap: 20px;
+.row > * {
+  width: 100%;
+  margin-top: var(--gap);
+  padding-left: var(--half);
+  padding-right: var(--half);
+  flex-shrink: 0;
 }
 .card {
   display: flex;
@@ -194,7 +199,6 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--btn-gap);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.3;
@@ -212,6 +216,9 @@ button {
   transition: transform var(--transition-duration)
     var(--transition-timing-function);
   line-height: 1;
+}
+.btn__text + .btn__icon {
+  margin-left: var(--btn-gap);
 }
 .btn__icon path {
   transition-property: stroke, fill;
@@ -264,20 +271,26 @@ button {
   justify-content: space-between;
 }
 .btn--circled-arrow .btn__icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: var(--color-white);
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
+.btn--circled-arrow .btn__icon svg {
+  width: 14px;
+  height: auto;
+}
+
 /* Header */
 .header {
   padding: 40px 16px 0;
   background-color: var(--color-body);
 }
 .btn--header {
-  gap: 12px;
+  --btn-gap: 12px;
   font-size: 14px;
   padding: 7px 10px;
 }
@@ -312,7 +325,6 @@ button {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 26px;
 }
 .header__inner .menu a {
   font-size: 14px;
@@ -336,7 +348,7 @@ button {
   z-index: 2;
   opacity: 0;
   visibility: hidden;
-  padding: 0 16px 16px;
+  padding: 0 16px;
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-body);
   transition-property: top, opacity, visibility;
@@ -351,14 +363,16 @@ button {
 .nav__menu .menu {
   flex-direction: column;
   align-items: flex-start;
-  gap: 15px;
+}
+.nav__menu .menu li {
+  padding: 8px 0;
 }
 .auth__menu {
   margin-left: auto;
   margin-right: 23px;
 }
-.auth__menu .menu {
-  gap: 20px;
+.auth__menu .menu li:not(:last-child) {
+  margin-right: 20px;
 }
 .menu .header__btn a {
   padding: 12px 20px;
@@ -388,7 +402,6 @@ button {
 .banner__title {
   display: flex;
   align-items: center;
-  gap: 10px;
   border: 1px solid var(--color-border);
   border-radius: 11px;
   padding: 12px 14px;
@@ -410,6 +423,7 @@ button {
 .banner__title .title__text {
   font-size: 16px;
   color: var(--color-gray-10);
+  margin-left: 10px;
 }
 .banner__title .title__icon {
   width: 48px;
@@ -439,11 +453,13 @@ button {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 11px;
   margin-top: 48px;
 }
 .banner__btn .btn {
   padding: 15px 20px;
+}
+.banner__btn .btn + .btn {
+  margin-left: 11px;
 }
 .partner__logos {
   padding: 10px;
@@ -503,14 +519,17 @@ button {
   padding: 0 0 52px;
 }
 .benefit--card {
+  --card-gap: 28px;
   align-items: flex-end;
-  gap: 28px;
   padding: 30px 29px;
   background-color: var(--color-white);
   color: var(--color-gray-30);
   transition: box-shadow var(--transition-duration)
     var(--transition-timing-function);
   border: none;
+}
+.benefit--card > :not(:last-child) {
+  margin-bottom: var(--card-gap);
 }
 .benefit--card:hover {
   box-shadow: 0 0 40px rgba(255, 149, 0, 0.06);
@@ -543,9 +562,12 @@ button {
   height: auto;
 }
 .card--course {
+  --card-gap: 23px;
   height: 100%;
   padding: 24px;
-  gap: 23px;
+}
+.card--course > :not(:last-child) {
+  margin-bottom: var(--card-gap);
 }
 .card--course .card__img {
   aspect-ratio: 683.5 / 379;
@@ -562,7 +584,6 @@ button {
 .card--course:hover .card__img img {
   transform: scale(1.2);
 }
-
 .card--course .card__title {
   margin-bottom: 10px;
 }
@@ -791,19 +812,19 @@ button {
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 .accordion .ac {
   overflow: hidden;
   transition-property: padding;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
-  padding: 29px 48px;
+  padding: 19px 24px;
   border: 1px solid var(--color-border);
   border-radius: 12px;
 }
 .accordion .ac.is-active {
-  padding: 24px;
+  padding: 24px 24px 20px;
 }
 .ac-panel {
   opacity: 0;
@@ -813,7 +834,7 @@ button {
 }
 .ac-panel .ac-text {
   letter-spacing: -0.1px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 .accordion .ac-header {
   margin-bottom: 0;
@@ -822,8 +843,8 @@ button {
   transition-timing-function: var(--transition-timing-function);
 }
 .is-active .ac-header {
-  padding-bottom: 24px;
-  margin-bottom: 50px;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
   border-bottom: 1px solid var(--color-border);
 }
 .accordion .ac-trigger {
@@ -831,7 +852,6 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
   font-size: 16px;
   font-weight: 500;
   text-align: start;
@@ -850,47 +870,58 @@ button {
   background-size: 14px;
   transition: background var(--transition-duration)
     var(--transition-timing-function);
+  margin-left: 40px;
 }
 .accordion .is-active .ac-trigger::after {
   background-image: url("./../img/icon-cross.svg");
   background-size: 12px;
+}
+.accordion .btn {
+  padding: 12px 18px;
 }
 /* footer */
 .footer {
   color: var(--color-gray-40);
   background-color: var(--color-white);
 }
+.footer .container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .footer__top {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -12px;
-  padding: 100px 0 30px;
+  padding: 50px 0 20px;
 }
 .footer__top .footer__col {
+  width: 100%;
   padding: 0 12px;
 }
+.footer__top .footer__col:nth-child(2),
+.footer__top .footer__col:nth-child(3) {
+  margin-bottom: 20px;
+}
 .footer__top .footer__col:nth-child(1) {
-  width: 48.6%;
+  margin-bottom: 12px;
 }
 .footer__top .footer__col:nth-child(2) {
-  width: 17.4%;
+  width: 42%;
 }
 .footer__top .footer__col:nth-child(3) {
-  width: 17%;
-}
-.footer__top .footer__col:nth-child(4) {
-  width: 17%;
+  width: 58%;
 }
 .footer__logo img {
   width: 44px;
 }
 .footer__logo {
-  margin-bottom: 39px;
+  margin-bottom: 32px;
 }
 .footer__icon-list li a {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
+  font-size: 15px;
 }
 .footer__icon-list li svg {
   margin-right: 6px;
@@ -900,22 +931,17 @@ button {
 .footer__title {
   display: block;
   color: var(--color-gray-15);
-  font-size: 20px;
-  margin-bottom: 13px;
+  font-size: 18px;
+  margin-bottom: 9px;
 }
 .footer__menu li {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .footer__menu a {
   color: var(--color-gray-35);
 }
 .footer__menu a:hover {
   color: var(--color-primary);
-}
-.footer__copyright {
-  border-top: 1px solid var(--color-border);
-  padding: 49px 0 30px;
-  text-align: center;
 }
 .social-media {
   display: flex;
@@ -924,14 +950,18 @@ button {
   align-items: center;
 }
 .social-media a {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-border);
   background-color: var(--color-light);
   border-radius: 8px;
+}
+.social-media a svg {
+  width: 22px;
+  height: auto;
 }
 .social-media a path {
   transition-property: fill, stroke;
@@ -944,13 +974,18 @@ button {
 .social-media a:hover path {
   fill: var(--color-primary);
 }
+.footer__copyright {
+  border-top: 1px solid var(--color-border);
+  padding: 20px 0 24px;
+  text-align: center;
+}
 @media (min-width: 768px) {
-  .grid {
-    display: grid;
+  .col-6,
+  .col-4 {
+    width: 50%;
   }
-  .grid-col-3,
-  .grid-col-2 {
-    grid-template-columns: repeat(2, 1fr);
+  .gap-md-30 {
+    --gap: 30px;
   }
 }
 @media (min-width: 1024px) {
@@ -993,8 +1028,8 @@ button {
   .container--lg {
     max-width: 1860px;
   }
-  .grid-col-3 {
-    grid-template-columns: repeat(3, 1fr);
+  .col-4 {
+    width: 33.33%;
   }
   .header {
     padding: 20px 20px 0;
@@ -1164,9 +1199,6 @@ button {
   [data-tab-content] {
     padding: 50px;
   }
-  .pricing-block .gap-30 {
-    gap: 30px;
-  }
   .card--pricing {
     padding: 40px 24px 22px;
     gap: 51px;
@@ -1210,6 +1242,9 @@ button {
     font-size: 38px;
     margin-bottom: 6px;
   }
+  .accordion {
+    gap: 30px;
+  }
   .accordion .ac {
     padding: 23px 40px 24px;
   }
@@ -1223,6 +1258,7 @@ button {
   .accordion .ac-trigger::after {
     width: 44px;
     height: 44px;
+    margin-left: 20px;
   }
   .is-active .ac-header {
     padding-bottom: 20px;
@@ -1234,14 +1270,55 @@ button {
   .faq__content .faq__description {
     margin-bottom: 40px;
   }
+  .btn--circled-arrow .btn__icon {
+    width: 48px;
+    height: 48px;
+  }
   .accordion .btn {
     padding: 15px 22px;
   }
+  /* .btn--circled-arrow .btn__icon svg {
+    width: inherit;
+    height: inherit;
+  } */
   .ac-panel .ac-text {
     margin-bottom: 40px;
   }
   .footer__top {
     padding: 58px 0 30px;
+  }
+  .footer__logo {
+    margin-bottom: 39px;
+  }
+  .footer__top .footer__col:nth-child(1) {
+    width: 48.6%;
+  }
+  .footer__top .footer__col:nth-child(2) {
+    width: 17.4%;
+  }
+  .footer__top .footer__col:nth-child(3) {
+    width: 17%;
+  }
+  .footer__top .footer__col:nth-child(4) {
+    width: 17%;
+  }
+  .footer__title {
+    font-size: 20px;
+    margin-bottom: 13px;
+  }
+  .footer__menu li {
+    margin-bottom: 8px;
+  }
+  .social-media a {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+  }
+  .social-media a svg {
+    width: 24px;
+  }
+  .footer__copyright {
+    padding: 49px 0 30px;
   }
 }
 @media (min-width: 1920px) {
@@ -1277,9 +1354,6 @@ button {
   }
   .container--lg {
     max-width: 1860px;
-  }
-  .gap-30 {
-    gap: 30px;
   }
   .btn {
     font-size: 18px;
@@ -1372,7 +1446,7 @@ button {
     width: 34px;
   }
   .card--course {
-    gap: 30px;
+    --card-gap: 30px;
     padding: 50px 48px 46px;
   }
   .card--course .card__img {
@@ -1521,5 +1595,29 @@ button {
   }
   .footer__logo img {
     width: 54px;
+  }
+  .footer__title {
+    font-size: 20px;
+    margin-bottom: 13px;
+  }
+  .footer__top .footer__col:nth-child(1) {
+    width: 48.6%;
+  }
+  .footer__top .footer__col:nth-child(2) {
+    width: 17.4%;
+  }
+  .footer__top .footer__col:nth-child(3) {
+    width: 17%;
+  }
+  .footer__top .footer__col:nth-child(4) {
+    width: 17%;
+  }
+  .footer__icon-list li a {
+    margin-bottom: 20px;
+  }
+  .social-media a {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
   }
 }
