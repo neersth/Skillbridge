@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  menu();
   navTab();
 
   const accordions = document?.querySelectorAll(".accordion");
@@ -11,6 +12,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
 });
+
+function menu() {
+  const menuWrappers = document?.querySelectorAll(".nav-menu");
+  if (menuWrappers) {
+    menuWrappers?.forEach((wrapper) => {
+      const toggler = wrapper?.querySelector(".nav__toggler");
+      toggler?.addEventListener("click", (event) => {
+        wrapper.classList.toggle("active");
+      });
+    });
+  }
+}
 
 function navTab() {
   const activeClass = "btn--primary";
