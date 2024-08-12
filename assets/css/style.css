@@ -24,17 +24,32 @@
   --font-primary: "Be Vietnam Pro", sans-serif;
   --transition-duration: 0.3s;
   --transition-timing-function: ease-in-out;
+  --grid-gap: 20px;
+  --grid-half: calc(var(--grid-gap) / 2);
+  --btn-border-color: var(--color-border);
+  --btn-bg-color: var(--color-white);
+  --btn-text-color: var(--color-gray-15);
+  --btn-hover-text-color: var(--color-gray-15);
+  --btn-hover-bg-color: transparent;
+  --btn-hover-border-color: var(--color-gray-15);
+  --btn-border-width: 1px;
+  --btn-gap: 23px;
+  --btn-border-radius: 8px;
+  --card-gap: 0px;
+  --accordion-gap: 20px;
+}
+html {
   scroll-behavior: smooth;
 }
-
 body {
-  font-family: var(--font-primary);
   font-size: 14px;
-  font-weight: 400;
   line-height: 1.5;
-  background-color: var(--color-body);
+  font-weight: 400;
+  font-family: var(--font-primary);
   color: var(--color-gray-40);
+  background-color: var(--color-body);
   margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -78,17 +93,13 @@ h6,
 .h6 {
   font-size: 18px;
 }
-
-p {
-  margin: 0 0 20px;
-}
-
 a {
-  transition-property: background, border, color, opacity;
+  color: var(--color-gray-15);
+  text-decoration: none;
+  transition-property: color, opacity, background, border, visibility,
+    box-shadow, width, left, right;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
-  text-decoration: none;
-  color: var(--color-gray-15);
 }
 a:hover {
   color: var(--color-primary);
@@ -97,20 +108,11 @@ a:focus {
   outline: 1px dashed var(--color-gray-10);
 }
 
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 figure {
   margin: 0;
 }
-img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: top;
-}
+
+input[type="submit"],
 button {
   appearance: none;
   font-family: var(--font-primary);
@@ -118,11 +120,72 @@ button {
   background-color: transparent;
   padding: 0;
   cursor: pointer;
-  font-size: inherit;
-  transition-property: background, border, color;
+  transition-property: color, opacity, background, border, visibility,
+    box-shadow, width, left, right;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--transition-timing-function);
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+ul,
+ol,
+dl,
+p {
+  margin: 0 0 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="url"],
+input[type="search"],
+textarea {
+  margin: 0;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  display: block;
+  width: 100%;
+  height: 42px;
+  color: var(--color-text);
+  font-size: 16px;
+  line-height: 24px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+
+select {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+blockquote {
+  border-left: 5px solid var(--color-primary);
+  margin: 0;
+  padding: 0 0 0 35px;
+}
+
+th,
+td {
+  border: 1px solid var(--color-gray-10);
+  padding: 5px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+
 .wrapper {
   position: relative;
   overflow: hidden;
@@ -153,19 +216,16 @@ button {
   padding-left: 16px;
   padding-right: 16px;
 }
-
 .row {
-  --gap: 20px;
-  --half: calc(var(--gap) / 2);
   display: flex;
   flex-wrap: wrap;
-  margin: calc(var(--gap) * -1) calc(var(--half) * -1) 0;
+  margin: calc(var(--grid-gap) * -1) calc(var(--grid-half) * -1) 0;
 }
 .row > * {
   width: 100%;
-  margin-top: var(--gap);
-  padding-left: var(--half);
-  padding-right: var(--half);
+  margin-top: var(--grid-gap);
+  padding-left: var(--grid-half);
+  padding-right: var(--grid-half);
   flex-shrink: 0;
 }
 .card {
@@ -175,7 +235,10 @@ button {
   border-radius: 12px;
   border: 1px solid var(--color-border);
 }
-.card p {
+.card > :not(:last-child) {
+  margin-bottom: var(--card-gap);
+}
+.card p:last-child {
   margin-bottom: 0;
 }
 .px-0 {
@@ -185,17 +248,13 @@ button {
 .text-primary {
   color: var(--color-primary);
 }
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
 /* Global components */
 .btn {
-  --btn-border-color: var(--color-border);
-  --btn-bg-color: var(--color-white);
-  --btn-text-color: var(--color-gray-15);
-  --btn-hover-text-color: var(--color-gray-15);
-  --btn-hover-bg-color: transparent;
-  --btn-hover-border-color: var(--color-gray-15);
-  --btn-border-width: 1px;
-  --btn-gap: 23px;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -528,9 +587,6 @@ button {
     var(--transition-timing-function);
   border: none;
 }
-.benefit--card > :not(:last-child) {
-  margin-bottom: var(--card-gap);
-}
 .benefit--card:hover {
   box-shadow: 0 0 40px rgba(255, 149, 0, 0.06);
 }
@@ -594,9 +650,11 @@ button {
 }
 .card__tags {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 12px;
+}
+.card__tags li:not(:last-child) {
+  margin-right: 10px;
 }
 .card__tags a {
   display: inline-block;
@@ -635,11 +693,11 @@ button {
 .author-profile {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 .author-profile .author__img {
   width: 50px;
   aspect-ratio: 1;
+  margin-right: 10px;
 }
 .author-profile .author__img img {
   width: 100%;
@@ -696,11 +754,11 @@ button {
 }
 /* pricing card */
 .card--pricing {
+  --card-gap: 30px;
   padding: 30px 20px 29px;
   border: 1px solid var(--color-border);
   border-radius: 12px;
   background-color: var(--color-white-99);
-  gap: 30px;
 }
 .card--pricing .card__label {
   background-color: var(--color-primary-97);
@@ -751,17 +809,16 @@ button {
   font-size: 16px;
 }
 .feature__list {
-  display: flex;
-  flex-direction: column;
-  gap: 19px;
   color: var(--color-gray-30);
 }
 .feature__list li {
   display: flex;
-  gap: 8px;
   padding: 12px 10px 11px;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+}
+.feature__list li:not(:last-child) {
+  margin-bottom: 19px;
 }
 .feature__list li::before {
   content: "";
@@ -812,7 +869,9 @@ button {
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+}
+.accordion .ac:not(:last-child) {
+  margin-bottom: var(--accordion-gap);
 }
 .accordion .ac {
   overflow: hidden;
@@ -946,8 +1005,10 @@ button {
 .social-media {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
   align-items: center;
+}
+.social-media li:not(:last-child) {
+  margin-right: 14px;
 }
 .social-media a {
   width: 44px;
@@ -1043,11 +1104,8 @@ button {
   .header__logo img {
     width: 44px;
   }
-  .nav__menu .menu {
-    gap: 26px;
-  }
-  .header__inner {
-    gap: 50px;
+  .nav__menu .menu li:not(:last-child) {
+    margin-right: 26px;
   }
   .header__inner .menu a {
     font-size: 14px;
@@ -1073,10 +1131,9 @@ button {
   .nav-menu {
     flex: 1;
   }
-  .auth__menu .menu {
-    gap: 30px;
+  .auth__menu .menu li:not(:last-child) {
+    margin-right: 30px;
   }
-
   .banner-block {
     padding: 80px 0 99px;
   }
@@ -1126,7 +1183,7 @@ button {
     padding: 51px 0 102px;
   }
   .benefit--card {
-    gap: 38px;
+    --card-gap: 38px;
     padding: 40px;
   }
   .benefit--card .card__title {
@@ -1200,8 +1257,8 @@ button {
     padding: 50px;
   }
   .card--pricing {
+    --card-gap: 51px;
     padding: 40px 24px 22px;
-    gap: 51px;
   }
   .card--pricing .card__label {
     font-size: 18px;
@@ -1211,8 +1268,10 @@ button {
     margin-bottom: 24px;
   }
   .feature__list {
-    gap: 20px;
     padding: 0 30px;
+  }
+  .feature__list li:not(:last-child) {
+    margin-bottom: 20px;
   }
   .card__features {
     padding: 29px;
@@ -1243,7 +1302,7 @@ button {
     margin-bottom: 6px;
   }
   .accordion {
-    gap: 30px;
+    --accordion-gap: 30px;
   }
   .accordion .ac {
     padding: 23px 40px 24px;
@@ -1252,7 +1311,6 @@ button {
     padding: 37px 40px;
   }
   .accordion .ac-trigger {
-    gap: 15px;
     font-size: 18px;
   }
   .accordion .ac-trigger::after {
@@ -1432,7 +1490,7 @@ button {
     padding: 101px 0;
   }
   .benefit--card {
-    gap: 48px;
+    --card-gap: 48px;
     padding: 48px 50px 51px 49px;
   }
   .benefit--card .card__title {
@@ -1477,9 +1535,7 @@ button {
   }
   .author-profile .author__img {
     width: 60px;
-  }
-  .author-profile {
-    gap: 15px;
+    margin-right: 15px;
   }
   .card--testimonial .card__btn .btn {
     padding: 18px 22px;
@@ -1503,8 +1559,8 @@ button {
     padding: 80px;
   }
   .card--pricing {
+    --card-gap: 50px;
     padding: 52px 29px 29px;
-    gap: 50px;
   }
   .card--pricing .card__label {
     font-size: 22px;
@@ -1524,9 +1580,11 @@ button {
     padding: 39px 39px 42px;
   }
   .feature__list li {
-    gap: 12px;
     padding: 13px;
     font-size: 18px;
+  }
+  .feature__list li:not(:last-child) {
+    margin-bottom: 12px;
   }
   .feature__list li::before {
     width: 32px;
@@ -1555,13 +1613,13 @@ button {
     padding: 50px 48px;
   }
   .accordion .ac-trigger {
-    gap: 20px;
     font-size: 20px;
   }
   .accordion .ac-trigger::after {
     width: 52px;
     height: 52px;
     border-radius: 8px;
+    margin-left: 20px;
   }
   .is-active .ac-header {
     padding-bottom: 24px;
