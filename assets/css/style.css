@@ -82,15 +82,15 @@ h3,
 }
 h4,
 .h4 {
-  font-size: 22px;
+  font-size: 18px;
 }
 h5,
 .h5 {
-  font-size: 20px;
+  font-size: 16px;
 }
 h6,
 .h6 {
-  font-size: 18px;
+  font-size: 14px;
 }
 a {
   color: var(--color-gray-15);
@@ -171,7 +171,9 @@ blockquote {
   margin: 0;
   padding: 0 0 0 35px;
 }
-
+table {
+  border-collapse: collapse;
+}
 th,
 td {
   border: 1px solid var(--color-gray-10);
@@ -378,7 +380,7 @@ th {
   height: auto;
 }
 .header__logo a {
-  display: flex; /* to remove small space between img and anchor tag */
+  display: flex;
 }
 .header__inner .menu {
   display: flex;
@@ -464,7 +466,7 @@ th {
   border: 1px solid var(--color-border);
   border-radius: 11px;
   padding: 12px 14px;
-  max-width: 855px;
+  max-width: 360px;
   margin: 0 auto 16px;
   position: relative;
   background-color: var(--color-white);
@@ -480,6 +482,7 @@ th {
   background-size: contain;
 }
 .banner__title .title__text {
+  text-align: start;
   font-size: 16px;
   color: var(--color-gray-10);
   margin-left: 10px;
@@ -623,9 +626,6 @@ th {
   height: 100%;
   padding: 24px;
 }
-.card--course > :not(:last-child) {
-  margin-bottom: var(--card-gap);
-}
 .card--course .card__img {
   aspect-ratio: 683.5 / 379;
   border-radius: 8px;
@@ -682,6 +682,7 @@ th {
 }
 .card--testimonial .card__footer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 20px 30px;
@@ -698,7 +699,7 @@ th {
 .author-profile .author__img {
   width: 50px;
   aspect-ratio: 1;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .author-profile .author__img img {
   width: 100%;
@@ -724,6 +725,9 @@ th {
 }
 [data-tab-btn] {
   padding: 13px 24px;
+}
+[data-tab-btn]:focus {
+  outline: 1px dashed var(--color-gray-10);
 }
 .btn--primary[data-tab-btn]:focus {
   background-color: var(--color-primary);
@@ -870,6 +874,7 @@ th {
 
 /* accordion */
 .accordion {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -1049,6 +1054,7 @@ th {
   border-top: 1px solid var(--color-border);
   padding: 20px 0 24px;
   text-align: center;
+  flex-wrap: wrap;
 }
 @media (min-width: 768px) {
   .col-6,
@@ -1111,14 +1117,6 @@ th {
   .h2 {
     font-size: 28px;
   }
-  h3,
-  .h3 {
-    font-size: 20px;
-  }
-  h4,
-  .h4 {
-    font-size: 18px;
-  }
   h5,
   .h5 {
     font-size: 18px;
@@ -1137,7 +1135,7 @@ th {
     padding-right: 20px;
   }
   .container--lg {
-    max-width: 1860px;
+    max-width: 1520px;
   }
   .col-4 {
     width: 33.33%;
