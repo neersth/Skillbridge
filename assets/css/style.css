@@ -896,7 +896,14 @@ th {
 }
 .ac-panel .ac-text {
   letter-spacing: -0.1px;
-  margin-bottom: 20px;
+}
+.ac-panel .ac-text > :last-child {
+  margin-bottom: 0;
+}
+.ac-panel .ac-text + div,
+.ac-panel .ac-text + a,
+.ac-panel .ac-text + p {
+  margin-top: 20px;
 }
 .accordion .ac-header {
   margin-bottom: 0;
@@ -1381,8 +1388,10 @@ th {
   .accordion .btn {
     padding: 15px 22px;
   }
-  .ac-panel .ac-text {
-    margin-bottom: 40px;
+  .ac-panel .ac-text + div,
+  .ac-panel .ac-text + a,
+  .ac-panel .ac-text + p {
+    margin-top: 40px;
   }
   .footer__top {
     padding: 58px 0 2px;
@@ -1688,8 +1697,10 @@ th {
     width: 56px;
     height: 56px;
   }
-  .ac-panel .ac-text {
-    margin-bottom: 50px;
+  .ac-panel .ac-text + div,
+  .ac-panel .ac-text + a,
+  .ac-panel .ac-text + p {
+    margin-top: 50px;
   }
   .accordion .ac {
     padding: 29px 48px;
