@@ -726,7 +726,7 @@ th {
 .author-profile .author__img {
   width: 50px;
   aspect-ratio: 1;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .author-profile .author__img img {
   width: 100%;
@@ -1419,7 +1419,7 @@ th {
     margin-top: 40px;
   }
   .footer__top {
-    padding: 58px 0 2px;
+    padding: 60px 0 2px;
   }
   .footer__logo {
     margin-bottom: 29px;
@@ -1495,6 +1495,9 @@ th {
   }
   .container--lg {
     max-width: 1860px;
+  }
+  .gap-xl-30 {
+    --grid-gap: 30px;
   }
   .btn {
     font-size: 18px;
