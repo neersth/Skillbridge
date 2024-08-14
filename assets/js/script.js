@@ -2,6 +2,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
   menu();
   navTab();
 
+  const partnerSlider = new Swiper(".partner__logos", {
+    slidesPerView: 3,
+    breakpoints: {
+      768: {
+        slidesPerView: 4,
+      },
+      1024: {
+        slidesPerView: 7,
+      },
+    },
+  });
+
   const accordions = document?.querySelectorAll(".accordion");
   if (accordions) {
     accordions.forEach((accordion) => {
